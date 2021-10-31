@@ -34,7 +34,8 @@ def Threshold_Demo(val):
     msize = cv2.getTrackbarPos(trackbar_blur_value_msize, window_name)  # returns trackbar position
 
     img_position= str(cv2.getTrackbarPos(trackbar_img_value, window_name)).zfill(2)
-    src = cv2.imread(cv2.samples.findFile(args.folder+img_position+".jpg"))
+    filename=args.folder+img_position+".jpg"
+    src = cv2.imread(cv2.samples.findFile(filename))
     src_copy=src.copy()
     src_gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)    
     _, dst = cv2.threshold(src_gray, threshold_value, max_binary_value, threshold_type )
@@ -52,6 +53,7 @@ def Threshold_Demo(val):
     # dst_color = cv2.cvtColor(dst, cv2.COLOR_GRAY2BGR)
     cv2.drawContours(src_copy,[np.int0((cv2.boxPoints(cv2.minAreaRect(contours[0]))))],0,(0,255,0),20)
     src_copy = cv2.putText(src_copy, str(str1), (100, 150), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2, cv2.LINE_AA)
+    src_copy = cv2.putText(src_copy, str(filename), (100, 300), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2, cv2.LINE_AA)
     cv2.imshow(window_name, src_copy)
 
 
