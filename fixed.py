@@ -86,7 +86,7 @@ def inplane_correct():
         cv2.waitKey(-1)
 
 if __name__ == "__main__":
-
+    
     debug = 0
     image_paths = glob.glob("images/*")
     inplane_correct()
